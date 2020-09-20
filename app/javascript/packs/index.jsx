@@ -3,9 +3,11 @@
 
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import App from "../src/App.js";
+import "../src/index.css";
+import "../src/tailwind.output.css";
 
-console.log("Hello world from typescript");
+import App from "../src/App";
+// import * as serviceWorker from "../src/serviceWorker";
 
 document.addEventListener("DOMContentLoaded", () => {
   ReactDOM.render(
@@ -15,3 +17,8 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("root")
   );
 });
+
+// If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: https://bit.ly/CRA-PWA
+// serviceWorker.unregister();
