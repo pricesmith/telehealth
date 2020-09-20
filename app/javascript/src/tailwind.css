@@ -1,0 +1,72 @@
+@tailwind base;
+
+a:hover {
+  @apply text-teal-700
+}
+
+.user-area-nav a.active{
+  @apply text-teal-600
+}
+
+.card {
+  @apply border-2 border-gray-500 flex items-center justify-center m-3 p-2 shadow;
+  min-height: 5rem;
+}
+
+.card.materials {
+  @apply shadow-lg;
+  min-height: 12rem;
+}
+
+.token {
+  @apply p-1 border-2 border-l-0 border-t-0 border-gray-300 flex-grow flex justify-center items-center;
+  font-size: 1.8rem;
+  min-width: 40px;
+  max-width: 40px;
+  width: 40px;
+  height: 45px;
+}
+
+input.simple {
+  font-family: 'Montserrat', sans-serif;
+  @apply appearance-none bg-transparent w-full text-gray-700 border-b-2 border-gray-500 p-1 leading-tight
+}
+
+input.simple:focus-within {
+  background-color: #fff;
+}
+
+
+.tab-nav .tab a{
+  @apply w-full h-full inline-block py-2 px-4 rounded-t font-semibold bg-gray-400
+}
+
+.tab-nav .tab.active a{
+  @apply bg-white text-teal-600 border-l border-t border-r border-gray-100
+}
+
+.behavior-count {
+  transition: color 1s;
+}
+
+.behavior-count.highlight {
+  @apply text-green-400;
+  transition: color 0s;
+}
+
+.behavior .active .time{
+  @apply text-green-400;
+}
+
+.client-item{
+  transition: background 0.25s;
+}
+
+.client-item.highlight{
+  @apply bg-gray-300;
+  transition: background 0s;
+}
+
+@tailwind components;
+
+@tailwind utilities;

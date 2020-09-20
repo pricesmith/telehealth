@@ -1,0 +1,40 @@
+html, body, #root {
+  --nav-height: 0px;
+  --controls-bottom-height: 12rem;
+  height: 100%;
+}
+
+.hide-control {
+  --controls-bottom-height: 0px;
+}
+
+nav {
+  height: var(--nav-height);
+}
+
+#center-wrapper {
+  height: calc(100% - var(--nav-height));
+}
+
+#controls-bottom {
+  display: none;
+}
+
+#controls-left {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  #center-wrapper {
+    height: calc(100% - var(--nav-height) - var(--controls-bottom-height));
+  }
+
+  #controls-bottom {
+    display: flex;
+    height: var(--controls-bottom-height);
+  }
+
+  #controls-left {
+    display: block;
+  }
+}

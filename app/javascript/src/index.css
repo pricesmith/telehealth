@@ -1,0 +1,108 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.timer {
+  height: 3.5rem;
+}
+
+.timer .label{
+  font-family: 'Montserrat', sans-serif;
+}
+
+.timer .label:focus-within {
+  background-color: #fff;
+}
+
+.timer .label:focus-within .modify, .timer .label:focus-within .btn {
+  display: none;
+}
+
+.timer:focus-within .time, .timer.editing .time {
+  font-size: 1.5rem;
+}
+
+.time {
+  color: #AAA693;
+  font-family: 'Roboto Mono', monospace;
+}
+
+.active .time {
+  color: #a693aa;
+}
+
+.expired .time {
+  color: #945151;
+}
+
+.timer .time {
+  font-size: 1.7rem;
+  letter-spacing: 0.07em;
+}
+
+.timer .modify, .timer .btn{
+  height: 100%;
+}
+
+.timer .react-time-picker--disabled{
+  background: transparent;
+}
+
+.timer .react-time-picker--enabled{
+  background: #fff;
+}
+
+.timer .react-time-picker__inputGroup__input,
+.timer .react-time-picker__inputGroup__divider,
+.timer .react-time-picker__inputGroup__leadingZero{
+  font-size: 1.7rem;
+}
+
+#presentation .toggle-controls {
+  display: none;
+}
+
+.hide-control #presentation .toggle-controls {
+  display: initial;
+}
+
+.hide-control #presentation {
+  border: none;
+}
+
+.bg-partial-white {
+  background-color: rgba(255,255,255,0.7);
+}
+
+.toggle__dot {
+  top: -.25rem;
+  left: -.25rem;
+  transition: all 0.3s ease-in-out;
+}
+
+input:checked ~ .toggle__dot {
+  transform: translateX(100%);
+  background-color: #48bb78;
+}
+
+.therapist-full-screen{
+  background: url(/aba/full-screen-therapist.png) no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.deck-item .thumb{
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
