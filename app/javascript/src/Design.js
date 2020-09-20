@@ -59,7 +59,7 @@ function Design(props) {
         </div> */}
       </div>
       <button type="submit" form="design-form">
-        Submit
+        Create Card
       </button>
     </form>
   );
