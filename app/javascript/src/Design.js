@@ -61,7 +61,12 @@ function Design(props) {
     .getAttribute("content");
 
   return (
-    <form id="design-form" action="http://localhost:3000/cards" method="post">
+    <form
+      id="design-form"
+      action="http://localhost:3000/cards"
+      method="post"
+      encType="multipart/form-data"
+    >
       <div className="flex flex-col text-3xl mb-3">
         <span className="font-semibold">Design</span>
       </div>
@@ -80,17 +85,9 @@ function Design(props) {
             }
           />
         </div>
-
-        {/* <div className="flex-col">
-          <h3 className="text-xl mb-3">Image</h3>
-
-          <form action="/action_page.php">
-            <input type="file" id="myFile" name="filename" />
-          </form>
-        </div> */}
         <div className="flex-col">
           <h3 className="text-xl mb-3">Image</h3>
-          <input type="file" id="myFile" name="filename" />
+          <input type="file" id="myFile" name="image" />
         </div>
       </div>
       <input type="hidden" name="authenticity_token" value={csrfToken} />
