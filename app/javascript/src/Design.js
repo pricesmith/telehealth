@@ -16,9 +16,36 @@ function Design(props) {
   const [selectedTab, setSelectedTab] = React.useState();
 
   const submit = () => {
+    const input = document.querySelector('input[type="file"]');
+    const card = new FormData();
+    card.append("images", input.files[0]);
+
+    const csrfToken = document
+      .querySelector('[name="csrf-token"]')
+      .getAttribute("content");
+
+    const headers = new Headers({
+      "Content-Type": "application/x-www-form-urlencoded",
+      "X-CSRF-Token": csrfToken,
+    });
+
+    console.log(
+      JSON.stringify({
+        card: {
+          uuid: "sdkfjgk",
+        },
+      })
+    );
+
     fetch("http://localhost:3000/cards", {
       method: "POST",
-      body: "Hello",
+      headers,
+      body: JSON.stringify({
+        card: {
+          uuid: "",
+          card,
+        },
+      }),
     })
       .then((response) => response.json())
       .then((data) => {
@@ -29,8 +56,12 @@ function Design(props) {
       });
   };
 
+  const csrfToken = document
+    .querySelector('[name="csrf-token"]')
+    .getAttribute("content");
+
   return (
-    <form id="design-form" onSubmit={submit}>
+    <form id="design-form" action="http://localhost:3000/cards" method="post">
       <div className="flex flex-col text-3xl mb-3">
         <span className="font-semibold">Design</span>
       </div>
@@ -57,7 +88,12 @@ function Design(props) {
             <input type="file" id="myFile" name="filename" />
           </form>
         </div> */}
+        <div className="flex-col">
+          <h3 className="text-xl mb-3">Image</h3>
+          <input type="file" id="myFile" name="filename" />
+        </div>
       </div>
+      <input type="hidden" name="authenticity_token" value={csrfToken} />
       <button type="submit" form="design-form">
         Create Card
       </button>
