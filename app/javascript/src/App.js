@@ -1,18 +1,14 @@
-import React, { useState } from 'react';
-import './layout.css';
+import React, { useState, useEffect } from "react";
+import "./layout.css";
 
-import {
-  HashRouter as Router,
-  Switch,
-  Route,
-} from "react-router-dom";
+import { HashRouter as Router, Switch, Route } from "react-router-dom";
 
-import Body from './Body';
-import Home from './Home';
-import ControlsOnly from './ControlsOnly';
-import ControlsBottom from './ControlsBottom';
-import PointerHighlight from './PointerHighlight';
-import OptionsModal from './OptionsModal';
+import Body from "./Body";
+import Home from "./Home";
+import ControlsOnly from "./ControlsOnly";
+import ControlsBottom from "./ControlsBottom";
+import PointerHighlight from "./PointerHighlight";
+import OptionsModal from "./OptionsModal";
 
 function App() {
   const [controls, setControls] = useState(true);
@@ -22,55 +18,79 @@ function App() {
   const [trackPrompt, setTrackPrompt] = useState(false);
   const [showTherapist, setShowTherapist] = useState(true);
 
+  // init default headers
+  const headers = new Headers({
+    Accept: "application/json",
+    "Content-Type": "application/json",
+  });
+
+  // init GET options
+  const getOptions = {
+    method: "GET",
+    mode: "cors",
+    headers: headers,
+    redirect: "follow",
+  };
+
+  useEffect(() => {
+    console.log("Fetching cards...");
+    fetch("http://localhost:3000/cards", {
+      method: "GET",
+    })
+      .then((response) => console.log(response.json()))
+      // .then((jsonResponse) => console.log(jsonResponse))
+      .catch((error) => console.log("error", error));
+  });
+
   const cards = {
     tacting: {
       title: "tacting",
       facets: [
         {
           title: "tacting 1",
-          image: "fish.jpg"
-        }
-      ]
+          image: "fish.jpg",
+        },
+      ],
     },
     listener_response: {
       title: "Which does not fit?",
       facets: [
-        {image: "scissors.png"},
-        {image: "meat.png"},
-        {image: "butter.png"}
-      ]
+        { image: "scissors.png" },
+        { image: "meat.png" },
+        { image: "butter.png" },
+      ],
     },
     social_story: {
       title: "Movie Clip",
       facets: [
         {
           youtube: "mC4l9Wa7i2g?start=19",
-        }
-      ]
+        },
+      ],
     },
     intra: {
       title: "Full Screen",
       facets: [
         {
           camera: "therapist",
-        }
-      ]
+        },
+      ],
     },
     motor: {
       title: "Full Screen",
       facets: [
         {
           camera: "therapist",
-        }
-      ]
+        },
+      ],
     },
     mand: {
       title: "Full Screen",
       facets: [
         {
           camera: "therapist",
-        }
-      ]
+        },
+      ],
     },
     reinforce: {
       title: "Reinforce",
@@ -78,47 +98,52 @@ function App() {
         {
           camera: "reinforce",
           youtube: "Lj7RfwV_V_k?start=202",
-        }
-      ]
-    }
-  }
+        },
+      ],
+    },
+  };
 
-  const handleControlsChange = (open=false) => {
+  const handleControlsChange = (open = false) => {
     setControls(!controls);
-    if(controls && open) window.open(document.URL.replace(/#\/.*$/, "") + "#/controls", '_blank', 'location=yes,height=520,width=690,scrollbars=no,status=yes');
-  }
+    if (controls && open)
+      window.open(
+        document.URL.replace(/#\/.*$/, "") + "#/controls",
+        "_blank",
+        "location=yes,height=520,width=690,scrollbars=no,status=yes"
+      );
+  };
 
   const handleNavigatePresentation = (card) => {
     setCard(card);
-  }
+  };
 
   const advancePresentation = () => {
-    if(card === 'listener_response') {
-      setCard('tacting')
+    if (card === "listener_response") {
+      setCard("tacting");
     } else {
-      setCard('listener_response')
+      setCard("listener_response");
     }
-  }
+  };
 
   const handlePointerHighlight = (event) => {
     setPointerHighlight(event.target.checked);
-  }
+  };
 
   const handleTrackPrompt = (event) => {
     setTrackPrompt(event.target.checked);
-  }
+  };
 
   const handleShowTherapist = (event) => {
     setShowTherapist(event.target.checked);
-  }
+  };
 
   return (
-    <Router basename='/'>
+    <Router basename="/">
       <Switch>
         <Route path="/home" component={Home} />
 
         <Route path="/controls">
-          <div className={`h-full`} >
+          <div className={`h-full`}>
             <ControlsOnly
               setControls={handleControlsChange}
               setOptionsModal={setOptionsModal}
@@ -128,10 +153,8 @@ function App() {
         </Route>
 
         <Route>
-          <div className={`h-full ${controls ? "" : "hide-control"}`} >
-            { showPointerHighlight &&
-              <PointerHighlight />
-            }
+          <div className={`h-full ${controls ? "" : "hide-control"}`}>
+            {showPointerHighlight && <PointerHighlight />}
 
             <Body
               controls={controls}
@@ -143,11 +166,15 @@ function App() {
               trackPrompt={trackPrompt}
               showTherapist={showTherapist}
               setShowTherapist={setShowTherapist}
-              />
+            />
 
-            { controls &&
-              <ControlsBottom navigatePresentation={handleNavigatePresentation} cards={cards} card={card} />
-            }
+            {controls && (
+              <ControlsBottom
+                navigatePresentation={handleNavigatePresentation}
+                cards={cards}
+                card={card}
+              />
+            )}
 
             <OptionsModal
               setOptionsModal={setOptionsModal}
@@ -158,7 +185,7 @@ function App() {
               showTrackPrompt={trackPrompt}
               setShowTherapist={handleShowTherapist}
               showTherapist={showTherapist}
-              />
+            />
           </div>
         </Route>
       </Switch>

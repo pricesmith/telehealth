@@ -15,47 +15,6 @@ function Design(props) {
   const [value, setValue] = React.useState("**Hello world!!!**");
   const [selectedTab, setSelectedTab] = React.useState();
 
-  const submit = () => {
-    const input = document.querySelector('input[type="file"]');
-    const card = new FormData();
-    card.append("images", input.files[0]);
-
-    const csrfToken = document
-      .querySelector('[name="csrf-token"]')
-      .getAttribute("content");
-
-    const headers = new Headers({
-      "Content-Type": "application/x-www-form-urlencoded",
-      "X-CSRF-Token": csrfToken,
-    });
-
-    console.log(
-      JSON.stringify({
-        card: {
-          uuid: "sdkfjgk",
-        },
-      })
-    );
-
-    fetch("http://localhost:3000/cards", {
-      method: "POST",
-      headers,
-      body: JSON.stringify({
-        card: {
-          uuid: "",
-          card,
-        },
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Success:", data);
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
-  };
-
   const csrfToken = document
     .querySelector('[name="csrf-token"]')
     .getAttribute("content");
@@ -74,8 +33,10 @@ function Design(props) {
       <div className="flex">
         <div className="flex-col mr-3">
           <h3 className="text-xl">Text</h3>
+          <input id="x" type="hidden" name="content" value={value} />
           <ReactMde
             type="input"
+            input="x"
             value={value}
             onChange={setValue}
             selectedTab={selectedTab}
