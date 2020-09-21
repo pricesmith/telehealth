@@ -15,7 +15,7 @@ function Presentation(props) {
   const [promptType, setPromptType] = useState("");
 
   const checkMode = () => {
-    const facet = props.card.facets[0];
+    const facet = () => (props.card.facets ? props.card.facets[0] : []);
     if (facet && facet.camera === "therapist") {
       return "therapist";
     } else if (facet && facet.camera === "reinforce") {

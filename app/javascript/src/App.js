@@ -12,6 +12,7 @@ import OptionsModal from "./OptionsModal";
 
 function App() {
   const [controls, setControls] = useState(true);
+  const [cards, setCards] = useState(null);
   const [card, setCard] = useState("tacting");
   const [optionsModalState, setOptionsModal] = useState();
   const [showPointerHighlight, setPointerHighlight] = useState(false);
@@ -19,75 +20,81 @@ function App() {
   const [showTherapist, setShowTherapist] = useState(true);
 
   useEffect(() => {
-    console.log("Fetching cards...");
-    fetch("http://localhost:3000/cards", {
-      method: "GET",
-    })
-      .then((response) => response.json())
-      .then((jsonResponse) => console.log(jsonResponse))
-      .catch((error) => console.log("error", error));
+    if (!cards) {
+      console.log("Fetching cards...");
+
+      fetch("http://localhost:3000/cards", {
+        method: "GET",
+      })
+        .then((response) => response.json())
+        .then((jsonResponse) => {
+          console.log(jsonResponse);
+          setCards(jsonResponse);
+        })
+        .catch((error) => console.log("error", error));
+    }
   });
 
-  const cards = {
-    tacting: {
-      title: "tacting",
-      facets: [
-        {
-          title: "tacting 1",
-          image: "fish.jpg",
-        },
-      ],
-    },
-    listener_response: {
-      title: "Which does not fit?",
-      facets: [
-        { image: "scissors.png" },
-        { image: "meat.png" },
-        { image: "butter.png" },
-      ],
-    },
-    social_story: {
-      title: "Movie Clip",
-      facets: [
-        {
-          youtube: "mC4l9Wa7i2g?start=19",
-        },
-      ],
-    },
-    intra: {
-      title: "Full Screen",
-      facets: [
-        {
-          camera: "therapist",
-        },
-      ],
-    },
-    motor: {
-      title: "Full Screen",
-      facets: [
-        {
-          camera: "therapist",
-        },
-      ],
-    },
-    mand: {
-      title: "Full Screen",
-      facets: [
-        {
-          camera: "therapist",
-        },
-      ],
-    },
-    reinforce: {
-      title: "Reinforce",
-      facets: [
-        {
-          camera: "reinforce",
-          youtube: "Lj7RfwV_V_k?start=202",
-        },
-      ],
-    },
-  };
+  // const cards = {
+  //   tacting: {
+  //     title: "tacting",
+  //     facets: [
+  //       {
+  //         title: "tacting 1",
+  //         image: "fish.jpg",
+  //       },
+  //     ],
+  //   },
+  //   listener_response: {
+  //     title: "Which does not fit?",
+  //     facets: [
+  //       { image: "scissors.png" },
+  //       { image: "meat.png" },
+  //       { image: "butter.png" },
+  //     ],
+  //   },
+  //   social_story: {
+  //     title: "Movie Clip",
+  //     facets: [
+  //       {
+  //         youtube: "mC4l9Wa7i2g?start=19",
+  //       },
+  //     ],
+  //   },
+  //   intra: {
+  //     title: "Full Screen",
+  //     facets: [
+  //       {
+  //         camera: "therapist",
+  //       },
+  //     ],
+  //   },
+  //   motor: {
+  //     title: "Full Screen",
+  //     facets: [
+  //       {
+  //         camera: "therapist",
+  //       },
+  //     ],
+  //   },
+  //   mand: {
+  //     title: "Full Screen",
+  //     facets: [
+  //       {
+  //         camera: "therapist",
+  //       },
+  //     ],
+  //   },
+  //   reinforce: {
+  //     title: "Reinforce",
+  //     facets: [
+  //       {
+  //         camera: "reinforce",
+  //         youtube: "Lj7RfwV_V_k?start=202",
+  //       },
+  //     ],
+  //   },
+  // };
 
   const handleControlsChange = (open = false) => {
     setControls(!controls);
@@ -145,7 +152,7 @@ function App() {
             <Body
               controls={controls}
               setControls={handleControlsChange}
-              card={cards[card]}
+              card={cards ? cards[card] : ""}
               setOptionsModal={setOptionsModal}
               navigatePresentation={handleNavigatePresentation}
               advancePresentation={advancePresentation}
