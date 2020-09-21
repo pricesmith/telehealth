@@ -6,7 +6,7 @@ import { FaCat } from "react-icons/fa";
 import { GrBook } from "react-icons/gr";
 
 function PresentationNav(props) {
-  const cardList = () => (props.cards ? Object.keys(props.cards) : {});
+  const cardList = props.cards ? Object.keys(props.cards) : [];
   const currentIndex = cardList.indexOf(props.card);
 
   return (

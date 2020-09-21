@@ -15,7 +15,7 @@ function Presentation(props) {
   const [promptType, setPromptType] = useState("");
 
   const checkMode = () => {
-    const facet = () => (props.card.facets ? props.card.facets[0] : []);
+    const facet = props.card.facets ? props.card.facets[0] : {};
     if (facet && facet.camera === "therapist") {
       return "therapist";
     } else if (facet && facet.camera === "reinforce") {
@@ -319,17 +319,19 @@ function Presentation(props) {
               style={{ maxHeight: "calc(100% - 160px)" }}
             >
               {cardsScreen &&
+                props.card.facets &&
                 (props.card.facets || []).map((facet, index) => {
                   return (
                     <div key={index} className="card materials flex-grow">
                       {facet.image && (
                         <img
                           alt=""
-                          src={process.env.PUBLIC_URL + "/" + facet.image}
+                          src={facet.image}
                           className=""
                           style={{ width: "80%" }}
                         />
                       )}
+                      {facet.content && <span>{facet.content}</span>}
                       {facet.youtube && (
                         <iframe
                           title="facet-youtube"
