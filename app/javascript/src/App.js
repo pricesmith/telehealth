@@ -18,27 +18,13 @@ function App() {
   const [trackPrompt, setTrackPrompt] = useState(false);
   const [showTherapist, setShowTherapist] = useState(true);
 
-  // init default headers
-  const headers = new Headers({
-    Accept: "application/json",
-    "Content-Type": "application/json",
-  });
-
-  // init GET options
-  const getOptions = {
-    method: "GET",
-    mode: "cors",
-    headers: headers,
-    redirect: "follow",
-  };
-
   useEffect(() => {
     console.log("Fetching cards...");
     fetch("http://localhost:3000/cards", {
       method: "GET",
     })
-      .then((response) => console.log(response.json()))
-      // .then((jsonResponse) => console.log(jsonResponse))
+      .then((response) => response.json())
+      .then((jsonResponse) => console.log(jsonResponse))
       .catch((error) => console.log("error", error));
   });
 
