@@ -27,11 +27,12 @@ class CardsController < ActionController::Base
 
     cards = Card.all
     cards_list = cards.map do |card|
+      image = url_for(card.image) if card.image.attached?
       {
         title: 'tacting',
         uuid: card.uuid,
         facets: [{
-          image: url_for(card.image),
+          image: image,
           content: card.content.body
         }]
       }
