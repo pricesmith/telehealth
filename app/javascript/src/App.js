@@ -111,11 +111,11 @@ function App() {
   };
 
   const advancePresentation = () => {
-    if (card === "listener_response") {
-      setCard("tacting");
-    } else {
-      setCard("listener_response");
-    }
+    // if (card === "listener_response") {
+    //   setCard("tacting");
+    // } else {
+    //   setCard("listener_response");
+    // }
   };
 
   const handlePointerHighlight = (event) => {
