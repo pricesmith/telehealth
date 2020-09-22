@@ -111,11 +111,6 @@ function App() {
   };
 
   const advancePresentation = () => {
-    // if (card === "listener_response") {
-    //   setCard("tacting");
-    // } else {
-    //   setCard("listener_response");
-    // }
     console.log("Card index: ", card);
     if (card >= cards.length - 1) {
       setCard(0);

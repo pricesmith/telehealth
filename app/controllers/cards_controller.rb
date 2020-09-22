@@ -10,21 +10,6 @@ class CardsController < ActionController::Base
   end
 
   def show
-    # cards = Card.all
-    # cards_list = cards.map do |card|
-    #   {
-    #     uuid: card.uuid,
-    #     image: url_for(card.image),
-    #     content: card.content.body
-    #   }
-    # end
-    # render json: {
-    #   "tacting": {
-    #     title: 'tacting',
-    #     facets: cards_list
-    #   }
-    # }
-
     cards = Card.all
     cards_list = cards.map do |card|
       image = url_for(card.image) if card.image.attached?
