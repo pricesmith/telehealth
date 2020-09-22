@@ -1,13 +1,18 @@
-import React from 'react';
-import Presentation from './Presentation';
-import ControlsLeft from './ControlsLeft';
+import React from "react";
+import Presentation from "./Presentation";
+import ControlsLeft from "./ControlsLeft";
 
 function Body(props) {
+  console.log("Body props: ", props);
+
   return (
     <div id="center-wrapper" className="flex flex-row">
-      { props.controls &&
-        <ControlsLeft setControls={props.setControls} setOptionsModal={props.setOptionsModal} />
-      }
+      {props.controls && (
+        <ControlsLeft
+          setControls={props.setControls}
+          setOptionsModal={props.setOptionsModal}
+        />
+      )}
       <Presentation
         setControls={props.setControls}
         navigatePresentation={props.navigatePresentation}

@@ -13,7 +13,7 @@ import OptionsModal from "./OptionsModal";
 function App() {
   const [controls, setControls] = useState(true);
   const [cards, setCards] = useState(null);
-  const [card, setCard] = useState("tacting");
+  const [card, setCard] = useState(0);
   const [optionsModalState, setOptionsModal] = useState();
   const [showPointerHighlight, setPointerHighlight] = useState(false);
   const [trackPrompt, setTrackPrompt] = useState(false);
