@@ -116,6 +116,15 @@ function App() {
     // } else {
     //   setCard("listener_response");
     // }
+    console.log("Card index: ", card);
+    if (card >= cards.length - 1) {
+      setCard(0);
+      console.log("reset card index: ", card);
+    } else {
+      const newCard = card + 1;
+      setCard(newCard);
+      console.log("new card: ", card);
+    }
   };
 
   const handlePointerHighlight = (event) => {
