@@ -22,7 +22,6 @@ class CardsController < ActionController::Base
         }]
       }
     end
-
     render json: cards_list
   end
 
