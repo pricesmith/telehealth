@@ -24,3 +24,6 @@ env PUBLIC_URL="" ./bin/webpack-dev-server
 ####
 
 #### Presentation page: http://localhost:3000/#/
+
+Create a card on the card design page. After submission, view and cycle
+through created cards on the presentation page
