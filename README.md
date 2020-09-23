@@ -1,15 +1,21 @@
 ## To install and setup:
 
+### install Ruby 2.7 on your computer
+
+```
+rvm install 2.7.0
+```
+
 ```
 bundle install
 yarn
-rake db:migrate
+rake db:create
 ```
 
 ## To run:
 
 ```
-rails server
+bundle exec rails server
 env PUBLIC_URL="" ./bin/webpack-dev-server
 ```
 
