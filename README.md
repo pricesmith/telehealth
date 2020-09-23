@@ -1,24 +1,14 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+To install and setup:
+bundle install
+yarn
 
-Things you may want to cover:
+rake db:migrate
 
-* Ruby version
+To run:
+rails server
+env PUBLIC_URL="" ./bin/webpack-dev-server
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Card design page: http://localhost:3000/#/home/Design
+Presentation page: http://localhost:3000/#/
